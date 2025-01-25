@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General */ 
+* {
+  font-family: 'Inter', sans-serif !important;
+}
+
+html {
+  scroll-behavior: smooth !important;
+}
+
+/* Animations */ 
+.animate-fade {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Markdown style */
+.prose {
+  @apply text-gray-800;
+}
+
+.prose h2 {
+  @apply text-3xl font-bold mt-20 mb-8 text-gray-900;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold mt-16 mb-6 text-gray-900;
+}
+
+.prose p {
+  @apply mb-8 leading-relaxed text-lg text-gray-600;
+}
+
+.prose ul {
+  @apply list-disc pl-6 mb-8 text-lg text-gray-600 space-y-2;
+}
+
+.prose pre {
+  @apply bg-gray-50 p-6 mb-8 overflow-x-auto;
+}
+
+.prose code {
+  @apply bg-gray-50 px-1.5 py-0.5 text-sm font-mono;
+}
+
+.prose img {
+  @apply my-16;
+}
+
+.prose a {
+  @apply text-gray-900 hover:text-gray-700 underline underline-offset-4;
+}
+
+.prose blockquote {
+  @apply border-l-2 border-gray-200 pl-6 italic my-8 text-gray-600;
+} 
+
+/* transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.2s ease;
+}
+
+.slide-left-enter-from {
+  opacity: 0;
+  transform: translateX(5px);
+}
+
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translateX(-5px);
+}
+
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translateX(-5px);
+}
+
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translateX(5px);
+}
