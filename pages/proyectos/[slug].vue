@@ -1,8 +1,13 @@
 <script setup>
 const route = useRoute()
 const slug = route.params.slug
-const { data: project } = await useAsyncData(`project`, () =>
-  queryCollection('proyectos').path(`/proyectos/${slug}`).first()
+const { data: project } = await useAsyncData(
+  `project-${slug}`,
+  () => queryCollection('proyectos').path(`/proyectos/${slug}`).first(),
+  {
+    server: true,
+    immediate: true
+  }
 );
 
 useHead(() => ({
@@ -33,7 +38,7 @@ useHead(() => ({
 
 <template>
   <Transition name="page" mode="out-in">
-    <main class="mt-24 px-4">
+    <main :key="route.fullPath" class="mt-24 px-4">
       <template v-if="project">
         <TransitionGroup name="fade" tag="div">
           <div class="relative h-full max-h-96 mb-10 rounded-lg" key="image">
@@ -51,10 +56,6 @@ useHead(() => ({
                 {{ tag }}
               </span>
             </div>
-
-            <p class="text-xl text-gray-600 mb-10 leading-relaxed">
-              {{ project.description }}
-            </p>
 
             <article class="prose max-w-none">
               <ContentRenderer :value="project" />

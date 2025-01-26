@@ -58,7 +58,9 @@ html {
 }
 
 .prose img {
-  @apply my-16;
+  @apply my-10;
+  @apply max-w-md;
+  @apply mx-auto;
 }
 
 .prose a {

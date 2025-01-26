@@ -1,8 +1,13 @@
 <script setup>
 const route = useRoute()
 const slug = route.params.slug
-const { data: post } = await useAsyncData(`post`, () =>
-  queryCollection('posts').path(`/posts/${slug}`).first()
+const { data: post } = await useAsyncData(
+  `post-${slug}`,
+  () => queryCollection('posts').path(`/posts/${slug}`).first(),
+  {
+    server: true,
+    immediate: true
+  }
 );
 
 useHead(() => ({
@@ -32,7 +37,7 @@ useHead(() => ({
 </script>
 
 <template>
-  <main class="mt-24 px-4">
+  <main :key="route.fullPath" class="mt-24 px-4">
     <template v-if="post">
       <div class="relative h-full max-h-96 mb-10 rounded-lg">
         <img v-if="post.image" :src="post.image" :alt="post.title"
