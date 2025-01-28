@@ -2,12 +2,16 @@ export default defineNuxtConfig({
   // modulos
   modules: [
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
     '@nuxt/content',
     '@nuxt/icon',
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/sitemap',
-    '@nuxtjs/robots'
+    '@nuxtjs/google-fonts'
   ],
+  // experimental
+  experimental: {
+    payloadExtraction: false,
+  },
   // seo
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -37,6 +41,12 @@ export default defineNuxtConfig({
   },
   // nitro
   nitro: {
+    routeRules: {
+      '/**': {
+        headers: {
+        }
+      },
+    },
     prerender: {
       crawlLinks: true,
       routes: ['/']

@@ -8,7 +8,7 @@
         </span>
       </div>
       <div class="flex flex-col p-6 h-48">
-        <h3 class="text-lg font-semibold mb-2 line-clamp-1 group-hover:text-blue-600 transition-colors duration-200">
+        <h3 class="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200 capitalize">
           {{ post.title }}
         </h3>
         <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ post.description }}</p>

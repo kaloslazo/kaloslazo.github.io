@@ -3,7 +3,11 @@ const selectedTags = ref<string[]>([])
 const { data: projectsData, status: projectDataStatus } = await useAsyncData(
   'projectsData',
   () => queryCollection('proyectos').all(),
-  { server: true }
+  {
+    server: true,
+    immediate: true,
+    watch: [],
+  }
 );
 
 const uniqueTags = computed(() => {

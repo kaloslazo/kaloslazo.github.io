@@ -1,6 +1,6 @@
 ---
 id: 3
-title: "Mayllu: Gestión Urbana con IA"
+title: "Mayllu: Gestión Urbana Potenciada por Análisis Predictivo"
 description: "Plataforma innovadora que conecta ciudadanos y municipalidades para transformar la gestión urbana de Lima. Mediante IA y un sistema de recompensas, facilitamos el reporte y resolución de problemas urbanos en tiempo real."
 image: "/img/projects/mayllu.png"
 github: "https://github.com/kaloslazo/mayllu"

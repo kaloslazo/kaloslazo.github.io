@@ -6,7 +6,8 @@ const { data: post } = await useAsyncData(
   () => queryCollection('posts').path(`/posts/${slug}`).first(),
   {
     server: true,
-    immediate: true
+    immediate: true,
+    watch: [route.params.slug],
   }
 );
 
@@ -45,7 +46,7 @@ useHead(() => ({
       </div>
 
       <div class="max-w-3xl mx-auto px-4">
-        <h1 class="text-4xl font-bold text-gray-900 mb-6">{{ post.title }}</h1>
+        <h1 class="text-4xl font-bold text-gray-900 mb-6 capitalize">{{ post.title }}</h1>
 
         <div class="flex flex-wrap gap-2 mb-4">
           <span v-for="tag in post.tags" :key="tag"

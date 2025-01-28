@@ -31,7 +31,6 @@
 const {data: recentsPostsData, status: recentPostsStatus } = await useAsyncData(
   'recentsPostsData',
   () => queryCollection('posts').limit(3).all(),
-  { server: true },
+  { server: true, inmediate: true },
 );
-console.log(recentsPostsData)
 </script>

@@ -26,9 +26,9 @@ useHead({
   <Transition name="page" mode="out-in">
     <main>
       <TransitionGroup name="fade" tag="div">
-        <HomeHero />
-        <HomeFeaturedProjects />
-        <HomeFeaturedBlog />
+        <HomeHero key="hero"/>
+        <HomeFeaturedProjects key="projects"/>
+        <HomeFeaturedBlog key="blog"/>
       </TransitionGroup>
     </main>
   </Transition>

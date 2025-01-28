@@ -98,7 +98,6 @@ const navigation = {
 </script>
 
 <script>
-// Add structured data for SEO
 export default {
   mounted() {
     const schema = {

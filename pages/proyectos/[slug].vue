@@ -6,7 +6,8 @@ const { data: project } = await useAsyncData(
   () => queryCollection('proyectos').path(`/proyectos/${slug}`).first(),
   {
     server: true,
-    immediate: true
+    immediate: true,
+    watch: [route.params.slug],
   }
 );
 
@@ -48,7 +49,7 @@ useHead(() => ({
 
           <div class="max-w-3xl mx-auto px-4" key="content">
 
-            <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ project.title }}</h1>
+            <h1 class="text-3xl font-bold text-gray-900 mb-6 capitalize">{{ project.title }}</h1>
 
             <div class="flex flex-wrap gap-2 mb-4">
               <span v-for="tag in project.tags" :key="tag"
