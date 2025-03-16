@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@iconify-json/tabler": "^1.2.14",
-    "@nuxt/content": "^3.0.0",
-    "node-gyp": "^11.1.0"
+    "@nuxt/content": "^3.0.0"
   }
 }
