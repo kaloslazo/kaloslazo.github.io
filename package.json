@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "kaloslazo",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,18 +11,20 @@
   },
   "dependencies": {
     "@nuxt/icon": "^1.10.3",
+    "@nuxt/image": "^1.9.0",
     "@nuxtjs/date-fns": "^1.5.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/robots": "^5.2.2",
     "@nuxtjs/sitemap": "^7.2.3",
     "@nuxtjs/tailwindcss": "^6.13.1",
     "@tailwindcss/typography": "^0.5.16",
-    "nuxt": "^3.15.2",
+    "nuxt": "^3.16.0",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "@iconify-json/tabler": "^1.2.14",
-    "@nuxt/content": "^3.0.0"
+    "@nuxt/content": "^3.0.0",
+    "node-gyp": "^11.1.0"
   }
 }

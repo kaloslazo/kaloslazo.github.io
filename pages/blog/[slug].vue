@@ -38,52 +38,81 @@ useHead(() => ({
 </script>
 
 <template>
-  <main :key="route.fullPath" class="mt-24 px-4">
+  <main :key="route.fullPath" class="mt-4 px-4 bg-slate-900 text-slate-100">
     <template v-if="post">
-      <div class="relative h-full max-h-96 mb-10 rounded-lg">
-        <img v-if="post.image" :src="post.image" :alt="post.title"
-          class="w-full h-full max-h-96 object-cover rounded-lg" />
-      </div>
+      <div class="max-w-3xl mx-auto">
+        <!-- Date and back link -->
+        <div class="flex justify-between items-center mb-8">
+          <NuxtLink to="/blog"
+            class="inline-flex items-center text-sm text-slate-400 hover:text-blue-500 transition-colors group">
+            <Icon name="tabler:arrow-left" class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Blog
+          </NuxtLink>
+          <span class="text-sm text-slate-400">{{ post.date }}</span>
+        </div>
 
-      <div class="max-w-3xl mx-auto px-4">
-        <h1 class="text-4xl font-bold text-gray-900 mb-6 capitalize">{{ post.title }}</h1>
+        <!-- Title -->
+        <h1 class="text-4xl font-bold text-slate-100 mb-6">{{ post.title }}</h1>
 
-        <div class="flex flex-wrap gap-2 mb-4">
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mb-8">
           <span v-for="tag in post.tags" :key="tag"
-            class="text-sm px-3 py-1.5 rounded-md transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">
+            class="text-xs px-2 py-1 rounded-md border border-blue-500 text-blue-500">
             {{ tag }}
           </span>
         </div>
 
-        <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+        <!-- Image -->
+        <div class="relative w-full mb-12" v-if="post.image">
+          <img :src="post.image" :alt="post.title" class="w-full aspect-[21/9] object-cover rounded-lg" />
+        </div>
+
+        <!-- Description -->
+        <p class="text-xl text-slate-300 mb-12 leading-relaxed border-l-2 border-blue-500 pl-4">
           {{ post.description }}
         </p>
 
-        <article class="prose max-w-none">
+        <!-- Content -->
+        <article class="prose prose-invert prose-blue max-w-none mb-16">
           <ContentRenderer :value="post" />
         </article>
       </div>
 
-      <NuxtLink to="/blog"
-        class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors group mt-8">
-        <Icon name="tabler:arrow-left" class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-        Volver a blog
-      </NuxtLink>
+      <!-- Bottom navigation and sharing -->
+      <div class="pt-8 pb-16 mt-8">
+        <div class="max-w-3xl mx-auto flex justify-between items-center">
+          <NuxtLink to="/blog"
+            class="inline-flex items-center text-sm text-slate-400 hover:text-blue-500 transition-colors group">
+            <Icon name="tabler:arrow-left" class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Volver a blog
+          </NuxtLink>
+
+          <div class="flex items-center gap-4">
+            <button class="text-slate-400 hover:text-blue-500 transition-colors">
+              <Icon name="tabler:share" class="w-5 h-5" />
+            </button>
+            <button class="text-slate-400 hover:text-blue-500 transition-colors">
+              <Icon name="tabler:bookmark" class="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </div>
     </template>
 
+    <!-- Not found state -->
     <div v-else class="h-full min-h-98 py-20 flex items-center justify-center px-4">
       <div class="text-center">
         <h2 class="text-2xl font-semibold mb-2">Artículo no encontrado</h2>
-        <p class="text-gray-600 mb-8">
+        <p class="text-slate-400 mb-8">
           El artículo que buscas no existe o ha sido movido.
         </p>
         <div class="flex flex-col md:flex-row gap-4 w-full items-center justify-center">
           <NuxtLink to="/blog"
-            class="px-6 py-3 border border-blue-600 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition-colors text-center w-full md:w-auto">
+            class="px-6 py-3 border border-blue-500 bg-blue-500 text-white rounded-md font-medium hover:bg-blue-600 transition-colors text-center w-full md:w-auto">
             Ver artículos
           </NuxtLink>
           <NuxtLink to="/"
-            class="px-6 py-3 border border-gray-300 rounded-md font-medium hover:border-blue-600 hover:text-blue-600 transition-colors flex items-center justify-center gap-2 w-full md:w-auto">
+            class="px-6 py-3 border border-slate-700 rounded-md font-medium hover:border-blue-500 hover:text-blue-500 transition-colors flex items-center justify-center gap-2 w-full md:w-auto">
             Ir al inicio
           </NuxtLink>
         </div>

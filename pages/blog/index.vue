@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const selectedTags = ref<string[]>([])
-const { data: postsData, status: projectDataStatus } = await useAsyncData(
+const { data: postsData, status: postDataStatus } = await useAsyncData(
   'postsData',
   () => queryCollection('posts').all(),
   {
@@ -80,38 +80,45 @@ useHead({
 </script>
 
 <template>
-  <main class="pt-28 md:pt-24 px-4">
+  <main class="mt-4 px-4">
     <div class="max-w-6xl mx-auto">
-      <header class="mb-6">
-        <h1 class="text-4xl font-bold mb-4 text-gray-900">Blog</h1>
-        <p class="text-lg text-gray-600">
-          Espacio donde comparto notas, experiencias y conocimiento que voy adquiriendo en el campo de la Ciencia de la Computación.
+      <header class="mb-12">
+        <h1 class="text-4xl font-bold mb-4 text-slate-100">Blog</h1>
+        <p class="text-lg text-slate-300 max-w-2xl">
+          Espacio donde comparto notas, experiencias y conocimiento que voy adquiriendo en el campo de la Ciencia de la
+          Computación.
         </p>
       </header>
 
-      <div class="flex flex-wrap gap-2 mb-12">
-        <button v-for="tag in uniqueTags" :key="tag" class="text-sm px-3 py-1.5 rounded-md transition-colors" :class="selectedTags.includes(tag)
-          ? 'bg-blue-600 text-white hover:bg-blue-700'
-          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'" @click="toggleTag(tag)">
+      <TransitionGroup name="fade" tag="div" class="flex flex-wrap gap-2 mb-12">
+        <button v-for="tag in uniqueTags" :key="tag" class="text-sm px-3 py-1.5 rounded-md border transition-colors"
+          :class="selectedTags.includes(tag)
+            ? 'bg-blue-500 text-slate-100 border-blue-500'
+            : 'bg-transparent text-slate-300 border-slate-700 hover:border-blue-500 hover:text-blue-500'"
+          @click="toggleTag(tag)">
           {{ tag }}
         </button>
-      </div>
+      </TransitionGroup>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <template v-if="projectDataStatus !== 'success'">
-          <ProjectsProjectCardLoader v-for="i in 6" :key="i" />
+      <TransitionGroup name="fade" tag="div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <template v-if="postDataStatus !== 'success'">
+          <BlogCardLoader v-for="i in 6" :key="i" />
         </template>
-
         <template v-else-if="filteredPosts.length > 0">
           <BlogCard v-for="post in filteredPosts" :key="post.id" :post="post" />
         </template>
-
         <template v-else>
-          <div class="col-span-3 text-center py-12 text-gray-500">
-            No se encontraron artículos con los filtros seleccionados.
+          <div class="col-span-3 text-center py-16 border border-slate-800 rounded-lg">
+            <Icon name="tabler:search-off" class="w-12 h-12 text-slate-700 mx-auto mb-4" />
+            <h3 class="text-xl font-medium text-slate-300 mb-2">No se encontraron artículos</h3>
+            <p class="text-slate-400 mb-6">No hay artículos que coincidan con los filtros seleccionados.</p>
+            <button @click="selectedTags = []"
+              class="px-4 py-2 bg-blue-500 text-white rounded-md font-medium hover:bg-blue-600 transition-colors">
+              Limpiar filtros
+            </button>
           </div>
         </template>
-      </div>
+      </TransitionGroup>
     </div>
   </main>
 </template>

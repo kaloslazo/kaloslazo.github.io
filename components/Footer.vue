@@ -1,5 +1,5 @@
 <template>
-  <footer class="mt-20 border-t border-gray-200 bg-white" aria-labelledby="footer-heading">
+  <footer class="mt-20 border-t border-slate-800 bg-slate-900" aria-labelledby="footer-heading">
     <h2 id="footer-heading" class="sr-only">Footer</h2>
 
     <div class="max-w-6xl mx-auto px-4 py-10">
@@ -7,19 +7,19 @@
         <div class="max-w-sm">
           <NuxtLink to="/" class="group">
             <h3 class="font-semibold text-xl tracking-tight">
-              <span class="text-gray-900">kaloslazo</span>
-              <span class="text-blue-600 group-hover:text-blue-700">.dev</span>
+              <span class="text-white">kaloslazo</span>
+              <span class="text-blue-500 group-hover:text-blue-400">.dev</span>
             </h3>
           </NuxtLink>
-          <p class="mt-4 text-base text-gray-600">
+          <p class="mt-4 text-base text-slate-300">
             Desarrollando soluciones tecnológicas que transforman organizaciones a través de la IA y desarrollo
             full-stack.
           </p>
           <div class="mt-6">
-            <h4 class="text-sm font-semibold text-gray-900 mb-4">Sígueme en redes</h4>
+            <h4 class="text-sm font-semibold text-white mb-4">Sígueme en redes</h4>
             <div class="flex items-center space-x-4">
               <a v-for="social in socials" :key="social.name" :href="social.url" :aria-label="`Visitar ${social.name}`"
-                target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors">
+                target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-blue-500 transition-colors">
                 <Icon :name="social.icon" class="w-5 h-5" />
               </a>
             </div>
@@ -29,10 +29,10 @@
         <nav class="mt-12 md:mt-0">
           <div class="grid grid-cols-2 gap-8">
             <div>
-              <h4 class="text-sm font-semibold text-gray-900 mb-4">Explorar</h4>
+              <h4 class="text-sm font-semibold text-white mb-4">Explorar</h4>
               <ul class="space-y-3">
                 <li v-for="item in navigation.main" :key="item.name">
-                  <NuxtLink :to="item.href" class="text-base text-gray-600 hover:text-gray-900 transition-colors">
+                  <NuxtLink :to="item.href" class="text-slate-300 hover:text-blue-500 transition-colors">
                     {{ item.name }}
                   </NuxtLink>
                 </li>
@@ -40,10 +40,10 @@
             </div>
 
             <div>
-              <h4 class="text-sm font-semibold text-gray-900 mb-4">Recursos</h4>
+              <h4 class="text-sm font-semibold text-white mb-4">Recursos</h4>
               <ul class="space-y-3">
                 <li v-for="item in navigation.resources" :key="item.name">
-                  <NuxtLink :to="item.href" class="text-base text-gray-600 hover:text-gray-900 transition-colors">
+                  <NuxtLink :to="item.href" class="text-slate-300 hover:text-blue-500 transition-colors">
                     {{ item.name }}
                   </NuxtLink>
                 </li>
@@ -53,8 +53,8 @@
         </nav>
       </div>
 
-      <div class="mt-12 pt-8 border-t border-gray-200">
-        <p class="text-sm text-gray-600">
+      <div class="mt-12 pt-8 border-t border-slate-800">
+        <p class="text-sm text-slate-400">
           © {{ new Date().getFullYear() }} Kalos Lazo. Todos los derechos reservados.
         </p>
       </div>

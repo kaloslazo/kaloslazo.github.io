@@ -81,19 +81,22 @@ useHead({
 
 <template>
   <Transition name="page" mode="out-in">
-    <main class="pt-28 md:pt-24 px-4">
+    <main class="mt-4 px-4">
       <div class="max-w-6xl mx-auto">
-        <header class="mb-6">
-          <h1 class="text-4xl font-bold mb-4 text-gray-900">Proyectos</h1>
-          <p class="text-lg text-gray-600">
-            Sección destinada a proyectos...
+        <header class="mb-12">
+          <h1 class="text-4xl font-bold mb-4 text-slate-100">Proyectos</h1>
+          <p class="text-lg text-slate-300 max-w-2xl">
+            Colección de proyectos en Ciencia de la Computación donde implemento algoritmos, análisis de datos e IA para
+            resolver problemas y compartir conocimiento.
           </p>
         </header>
 
         <TransitionGroup name="fade" tag="div" class="flex flex-wrap gap-2 mb-12">
-          <button v-for="tag in uniqueTags" :key="tag" class="text-sm px-3 py-1.5 rounded-md transition-colors" :class="selectedTags.includes(tag)
-            ? 'bg-blue-600 text-white hover:bg-blue-700'
-            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'" @click="toggleTag(tag)">
+          <button v-for="tag in uniqueTags" :key="tag" class="text-sm px-3 py-1.5 rounded-md border transition-colors"
+            :class="selectedTags.includes(tag)
+              ? 'bg-blue-500 text-slate-100 border-blue-500'
+              : 'bg-transparent text-slate-300 border-slate-700 hover:border-blue-500 hover:text-blue-500'"
+            @click="toggleTag(tag)">
             {{ tag }}
           </button>
         </TransitionGroup>
@@ -104,6 +107,17 @@ useHead({
           </template>
           <template v-else-if="filteredProjects.length > 0">
             <ProjectsProjectCard v-for="project in filteredProjects" :key="project.id" :project="project" />
+          </template>
+          <template v-else>
+            <div class="col-span-3 text-center py-16 border border-slate-800 rounded-lg">
+              <Icon name="tabler:search-off" class="w-12 h-12 text-slate-700 mx-auto mb-4" />
+              <h3 class="text-xl font-medium text-slate-300 mb-2">No se encontraron artículos</h3>
+              <p class="text-slate-400 mb-6">No hay artículos que coincidan con los filtros seleccionados.</p>
+              <button @click="selectedTags = []"
+                class="px-4 py-2 bg-blue-500 text-white rounded-md font-medium hover:bg-blue-600 transition-colors">
+                Limpiar filtros
+              </button>
+            </div>
           </template>
         </TransitionGroup>
       </div>

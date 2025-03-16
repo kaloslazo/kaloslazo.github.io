@@ -1,34 +1,38 @@
 <template>
-  <NuxtLink 
-    :to="`/proyectos/${project._slug || project.slug || ''}`" 
-    class="block h-full" 
-    v-if="project._slug || project.slug"
-  >
-    <article class="group flex flex-col h-full border border-gray-200 rounded-lg overflow-hidden hover:-translate-y-1 transition-all duration-150 ease-in-out">
-      <div class="relative w-full overflow-hidden">
-        <img 
-          :src="project.image" 
-          :alt="project.title" 
-          class="w-full aspect-[16/9] object-cover transform group-hover:scale-[1.02] transition-transform duration-150 ease-in-out" 
-        />
-      </div>
-      
-      <div class="flex flex-col p-6 flex-grow">
-        <div class="min-h-[7rem] mb-4">
-          <h3 class="text-lg font-semibold mb-3 min-h-[3.5rem] line-clamp-2 group-hover:text-blue-600 transition-colors duration-150 capitalize">
-            {{ project.title }}
-          </h3>
-          <p class="text-sm text-gray-600 min-h-[2.5rem] line-clamp-2">
-            {{ project.description }}
-          </p>
+  <NuxtLink :to="`/proyectos/${project._slug || project.slug || ''}`"
+    class="block h-full transition-all duration-300 hover:scale-[1.02] focus:scale-[1.02]"
+    v-if="project._slug || project.slug">
+    <article
+      class="group h-full bg-slate-800/50 rounded-lg border border-slate-700 overflow-hidden hover:border-blue-500 focus:border-blue-500">
+      <!-- image & placeholder -->
+      <div class="relative w-full aspect-[16/9] overflow-hidden">
+        <div v-if="!project.image" class="absolute inset-0 bg-slate-800 flex items-center justify-center">
+          <Icon name="tabler:code" class="w-10 h-10 text-blue-500/50" />
         </div>
+        <img v-if="project.image" :src="project.image" :alt="`Imagen del proyecto ${project.title}`"
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+        <div
+          class="absolute top-0 right-0 m-3 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-200">
+          <div class="bg-blue-500 px-2 pt-1 rounded-md">
+            <Icon name="tabler:link" class="w-4 h-4 text-white" />
+          </div>
+        </div>
+      </div>
 
-        <div class="flex flex-wrap gap-1.5 mt-auto">
-          <span 
-            v-for="tag in project.tags" 
-            :key="tag" 
-            class="text-xs px-2 py-1 rounded-md bg-gray-100 text-gray-600 transition-colors duration-150"
-          >
+      <!-- project content-->
+      <div class="p-4">
+        <h3
+          class="text-lg font-bold mb-2 text-white group-hover:text-blue-500 group-focus:text-blue-500 transition-colors duration-200">
+          {{ project.title }}
+        </h3>
+        <p class="text-sm text-slate-300 mb-4 line-clamp-2">
+          {{ project.description }}
+        </p>
+
+        <!-- project tags-->
+        <div class="flex flex-wrap gap-2">
+          <span v-for="tag in project.tags" :key="tag"
+            class="text-xs px-3 py-1 rounded-md bg-slate-700/30 text-slate-400 border border-slate-700">
             {{ tag }}
           </span>
         </div>
@@ -41,7 +45,7 @@
 defineProps({
   project: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 });
 </script>

@@ -1,24 +1,36 @@
 <template>
-  <section class="pt-20 px-4">
+  <section class="pt-20 pb-20 px-4 bg-slate-900">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold mb-2">Proyectos Destacados</h2>
-      <p class="text-gray-600 mb-10">Una selección de mis trabajos más recientes.</p>
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
+          Proyectos Destacados
+        </h2>
+        <p class="text-slate-300 max-w-2xl text-base">
+          Explora mis trabajos más recientes e innovadores en ciencia de datos, inteligencia artificial y desarrollo
+          web.
+        </p>
+      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- skeleton -->
         <template v-if="projectDataStatus !== 'success'">
-          <ProjectsProjectCardLoader v-for="i in 3" :key="i" />
+          <ProjectCardLoader v-for="i in 3" :key="i" />
         </template>
 
+        <!-- show projects -->
         <template v-else-if="projectsData.length > 0">
           <ProjectsProjectCard v-for="project in projectsData" :key="project.id" :project="project" />
         </template>
       </div>
 
-      <div class="mt-6">
-        <NuxtLink to="/proyectos"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2 border border-gray-200 rounded-md font-medium hover:border-blue-600 hover:text-blue-600 transition-colors">
-          Ver todos los proyectos
-          <Icon name="tabler:arrow-right" class="w-5 h-5" />
+      <div class="mt-10 flex justify-start">
+        <NuxtLink to="/blog"
+          class="group inline-flex items-center justify-start font-medium text-slate-900 transition-colors duration-200 bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600">
+          <span class="flex items-center gap-2">
+            Ver todas las entradas
+            <Icon name="tabler:arrow-right"
+              class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+          </span>
         </NuxtLink>
       </div>
     </div>
@@ -26,9 +38,11 @@
 </template>
 
 <script setup>
+import ProjectCardLoader from '../projects/ProjectCardLoader.vue';
+
 const { data: projectsData, status: projectDataStatus } = await useAsyncData(
   'projectsData',
-  () => queryCollection('proyectos').limit(4).all(),
+  () => queryCollection('proyectos').limit(6).all(),
   { server: true }
 );
 </script>
