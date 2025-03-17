@@ -1,0 +1,8 @@
+[build]
+  command = "export NITRO_PRESET=netlify && npm run generate"
+  publish = "dist"
+  
+[build.environment]
+  NODE_VERSION = "23.9.0"
+  NETLIFY_USE_YARN = "false"
+  NPM_FLAGS = "--no-optional"

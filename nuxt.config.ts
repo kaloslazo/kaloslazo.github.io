@@ -69,7 +69,7 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ["/"],
+      routes: ["/", "/acerca", "/blog", "/proyectos"],
     },
   },
   // google fonts
